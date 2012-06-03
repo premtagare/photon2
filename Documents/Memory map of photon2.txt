@@ -1,0 +1,34 @@
+Memory map
+-----------
+
+0x000000
+Interrupts set up by BIOS.
+
+0x007C00
+loadb.bin
+0x007E00
+stack for loadb.bin
+0x008E00
+
+0x00C000
+Descriptor Tables
+
+0x010000
+loadk.bin
+ds set to 0x010000
+0x015000
+stack of first process; set sp = 0x3000  (3 4K pages).
+0x018000
+
+0x019000
+place for loading FATs
+0x01C000
+place for root directory entires
+0x01FFFF
+
+0x020000
+place for loading kernel before moving to 1MB location.
+0x09FFFF
+
+0x100000
+kernel.bin

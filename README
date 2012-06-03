@@ -1,0 +1,21 @@
+Version 1:
+Stage 1 Bootloader is copied into MBR starting from address 0x3E
+This will parse FAT12 filesystem and loads Stage 2 Bootloader from floppy and places it at adress 0x10000 in RAM.
+*loadk.s and loadk.bin are just stub, these will be replaced with Stage 2 Bootloader code in the next version.
+
+Run following commands to compile and boot photon2:
+make in src folder
+./run
+
+
+Note:
+creating new floppy image:
+$ dd bs=512 count=2880 if=/dev/zero of=imagefile.img
+$ mkfs.msdos imagefile.img
+
+
+*** Extraordinary Techniques:
+
+1. To take snapshot of RAM, press ctrl+alt+2 while QEMU is runnning and use the following command
+   pmemsave starting_address end_address file
+   eg: pmemsave 0 0x20000 RAM.dump
