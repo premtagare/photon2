@@ -1,6 +1,6 @@
 
 
-all:loadb.bin loadk.bin
+all:loadb.bin loadk.bin kernel.bin
 
 clean:
 	rm *.bin

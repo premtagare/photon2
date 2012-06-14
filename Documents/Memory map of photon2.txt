@@ -10,9 +10,6 @@ loadb.bin
 stack for loadb.bin
 0x008E00
 
-0x00C000
-Descriptor Tables
-
 0x010000
 loadk.bin
 ds set to 0x010000

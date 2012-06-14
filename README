@@ -1,3 +1,8 @@
+Version 2:
+Stage 2 Bootloader(loadk.s) copies kernel from floppy to RAM. Kernel image is placed at location 0x100000.
+Bootloader switches to protected mode and jumps to execute kernel.
+*commands are same as in Version 1
+
 Version 1:
 Stage 1 Bootloader is copied into MBR starting from address 0x3E
 This will parse FAT12 filesystem and loads Stage 2 Bootloader from floppy and places it at adress 0x10000 in RAM.
