@@ -1,11 +1,7 @@
+#building bootloader + kernel
+#$(warning Building bootloader and kernel)
 
-
-all:loadb.bin loadk.bin kernel.bin
-
-clean:
-	rm *.bin
-%.bin:%.s
-	nasm -f bin -o $@ $<
-
-#loadb:
-#	nasm -f bin -o loadb.bin loadb.s
+all:
+	@echo Building bootloader and kernel
+	$(MAKE) -C bootloader
+	$(MAKE) -C kernel

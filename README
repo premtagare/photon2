@@ -1,3 +1,8 @@
+Version 3:
+Stage 2 Bootloader(loadk.s) parses kernel ELF binary and loads executable at exact location in RAM.
+Jumps to entry point in kernel.
+*commands still remain same
+
 Version 2:
 Stage 2 Bootloader(loadk.s) copies kernel from floppy to RAM. Kernel image is placed at location 0x100000.
 Bootloader switches to protected mode and jumps to execute kernel.
@@ -24,3 +29,11 @@ $ mkfs.msdos imagefile.img
 1. To take snapshot of RAM, press ctrl+alt+2 while QEMU is runnning and use the following command
    pmemsave starting_address end_address file
    eg: pmemsave 0 0x20000 RAM.dump
+
+2. Debugging kernel through GDB
+    use "#sudo qemu -fda /dev/loop0 -S -gdb tcp::5022" instead of "sudo qemu -fda /dev/loop0" in system_boot.sh
+    after executing ./run open another terminal and cd to src/kernel
+    Execute command "gdbtui kernel.bin" which opens gdb prompt
+    connect to QEMU by typing "target extended-remote:5022"
+    Now set the break points eg: "break main"
+    continue "c" to debug kernel.

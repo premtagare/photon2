@@ -28,4 +28,7 @@ place for loading kernel before moving to 1MB location.
 0x09FFFF
 
 0x100000
-kernel.bin
+kernel
+
+0x500000
+kernel raw ELF image
