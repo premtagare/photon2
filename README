@@ -1,19 +1,25 @@
-Version 3:
-Stage 2 Bootloader(loadk.s) parses kernel ELF binary and loads executable at exact location in RAM.
-Jumps to entry point in kernel.
-*commands still remain same
+Kernel Development:
+-------------------
+1. Defining and Loading GDT.
 
-Version 2:
-Stage 2 Bootloader(loadk.s) copies kernel from floppy to RAM. Kernel image is placed at location 0x100000.
-Bootloader switches to protected mode and jumps to execute kernel.
-*commands are same as in Version 1
 
-Version 1:
-Stage 1 Bootloader is copied into MBR starting from address 0x3E
+
+Bootloader Development:
+-----------------------
+1. Stage 1 Bootloader is copied into MBR starting from address 0x3E
 This will parse FAT12 filesystem and loads Stage 2 Bootloader from floppy and places it at adress 0x10000 in RAM.
 *loadk.s and loadk.bin are just stub, these will be replaced with Stage 2 Bootloader code in the next version.
 
-Run following commands to compile and boot photon2:
+2. Stage 2 Bootloader(loadk.s) copies kernel from floppy to RAM. Kernel image is placed at location 0x100000.
+Bootloader switches to protected mode and jumps to execute kernel.
+
+3. Stage 2 Bootloader(loadk.s) parses kernel ELF binary and loads executable at exact location in RAM.
+Jumps to entry point in kernel.
+
+
+Compile:
+--------
+Run the following commands to compile and boot photon2,
 make in src folder
 ./run
 
