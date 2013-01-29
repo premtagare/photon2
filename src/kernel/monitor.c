@@ -26,17 +26,23 @@ void print_char(char cToDisp)
 	unsigned short * pDispMem = NULL;
 	pDispMem = (unsigned short *) DISP_MEMORY;
 	
-	unsigned short iDispWord = 0;
-	iDispWord |= TXTCLR;
-	iDispWord |= cToDisp;
-	
-	pDispMem[iCursorPosition] = iDispWord;
-	
-	iCursorPosition++;
+	if( cToDisp == '\n' )
+	{
+		iCursorPosition += (SCREEN_WIDTH - (iCursorPosition % SCREEN_WIDTH));
+	}else
+	{
+		unsigned short iDispWord = 0;
+		iDispWord |= TXTCLR;
+		iDispWord |= cToDisp;
+		
+		pDispMem[iCursorPosition] = iDispWord;
+		
+		iCursorPosition++;
+	}
 	if(iCursorPosition >= SCREEN_SIZE)
 		scroll_screen();         
 	
-        move_cursor();
+	move_cursor();
 
 }
 
@@ -52,6 +58,29 @@ short monitor_write(char *pDispString)
 	}
 	
 	return iIndexChar;
+}
+
+short print_num(int num)
+{
+	if( num < 0)
+	{
+		print_char('-');
+		num*=-1;
+	}
+	else if( num == 0 )
+	{
+		print_char('0');
+		return 0;
+	}
+	int count = 0;
+	int digits[10];
+	while(num != 0)
+	{
+		digits[count++] = num % 10;
+		num/=10;
+	}
+	while(count>0)
+		print_char((char) (48+digits[--count]));
 }
 
 short scroll_screen()

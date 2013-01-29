@@ -1,7 +1,17 @@
+Code is written for x86 systems.
+QEMU is used as Emulator.
+
+Development platform : Ubuntu.
+
+After compilation binaries are transferred to a virtual floppy. System boots from this floppy.
+
+
+Versions explained:
+
 Kernel Development:
 -------------------
 1. Defining and Loading GDT.
-
+2. Initializing IDT.
 
 
 Bootloader Development:

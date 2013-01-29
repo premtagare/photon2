@@ -23,3 +23,10 @@ unsigned short inw(unsigned short port)
    asm volatile ("inw %1, %0" : "=a" (ret) : "dN" (port));
    return ret;
 }
+
+// copies val into dest for the specified length.
+void memset_int(unsigned int *dest,unsigned int val, unsigned int len)
+{
+  unsigned int *temp = (unsigned int *)dest;
+  for ( ; len != 0; len--) *temp++ = val;
+}

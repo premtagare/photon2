@@ -2,9 +2,13 @@
 
 #include "gdtidt.h"
 #define NUM_GDT_DESCR 5
+#define NUM_IDT_DESCR 256
 
 struct gdt_struct gdts[NUM_GDT_DESCR];
 struct gdt_base_struct gdt_base;
+
+struct idt_struct idts[NUM_IDT_DESCR];
+struct idt_base_struct idt_base;
 
 void create_gdt()
 {
@@ -70,5 +74,59 @@ int gdt_initialize()
   asm volatile ("ljmp $0x08,$next \n");
   asm volatile ("next:xorl %eax,%eax \n");
    
+}
+
+void set_idt(int num,int handler,unsigned short descr, unsigned char flags)
+{
+  idts[num].addr_low  = handler & 0xFFFF;
+  idts[num].addr_high = (handler >> 16 ) & 0xFFFF;
+  idts[num].zero_bits = 0;
+  idts[num].descr_sel = descr;
+  idts[num].flags     = flags;
+}
+
+int idt_initialize()
+{
+  memset_int(&idts,0,sizeof(struct idt_struct)*NUM_IDT_DESCR);
+
+  idt_base.limit = (NUM_IDT_DESCR*sizeof(struct idt_struct))-1;
+  idt_base.base  = (unsigned int)&idts;
+
+  set_idt(0, (unsigned int) isr0, 0x08, 0x8E);
+  set_idt(1, (unsigned int) isr1, 0x08, 0x8E);
+  set_idt(2, (unsigned int) isr2, 0x08, 0x8E);
+  set_idt(3, (unsigned int) isr3, 0x08, 0x8E);
+  set_idt(4, (unsigned int) isr4, 0x08, 0x8E);
+  set_idt(5, (unsigned int) isr5, 0x08, 0x8E);
+  set_idt(6, (unsigned int) isr6, 0x08, 0x8E);
+  set_idt(7, (unsigned int) isr7, 0x08, 0x8E);
+  set_idt(8, (unsigned int) isr8, 0x08, 0x8E);
+  set_idt(9, (unsigned int) isr9, 0x08, 0x8E);
+  set_idt(10, (unsigned int) isr10, 0x08, 0x8E);
+  set_idt(11, (unsigned int) isr11, 0x08, 0x8E);
+  set_idt(12, (unsigned int) isr12, 0x08, 0x8E);
+  set_idt(13, (unsigned int) isr13, 0x08, 0x8E);
+  set_idt(14, (unsigned int) isr14, 0x08, 0x8E);
+  set_idt(15, (unsigned int) isr15, 0x08, 0x8E);
+  set_idt(16, (unsigned int) isr16, 0x08, 0x8E);
+  set_idt(17, (unsigned int) isr17, 0x08, 0x8E);
+  set_idt(18, (unsigned int) isr18, 0x08, 0x8E);
+  set_idt(19, (unsigned int) isr19, 0x08, 0x8E);
+  set_idt(20, (unsigned int) isr20, 0x08, 0x8E);
+  set_idt(21, (unsigned int) isr21, 0x08, 0x8E);
+  set_idt(22, (unsigned int) isr22, 0x08, 0x8E);
+  set_idt(23, (unsigned int) isr23, 0x08, 0x8E);
+  set_idt(24, (unsigned int) isr24, 0x08, 0x8E);
+  set_idt(25, (unsigned int) isr25, 0x08, 0x8E);
+  set_idt(26, (unsigned int) isr26, 0x08, 0x8E);
+  set_idt(27, (unsigned int) isr27, 0x08, 0x8E);
+  set_idt(28, (unsigned int) isr28, 0x08, 0x8E);
+  set_idt(29, (unsigned int) isr29, 0x08, 0x8E);
+  set_idt(30, (unsigned int) isr30, 0x08, 0x8E);
+  set_idt(31, (unsigned int) isr31, 0x08, 0x8E);
+
+  // Load IDT
+  asm volatile ("movl %0,%%eax"::"r"(&idt_base):"%eax");
+  asm volatile ("lidt (%eax)");
 }
 
