@@ -1,3 +1,6 @@
+; loadk.s
+; Loads kernel into RAM, switch to protected mode
+
 BITS 16
 ORG 10000h
 

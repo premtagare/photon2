@@ -1,4 +1,4 @@
-
+# Makefile for compiling bootloader
 
 all:loadb.bin loadk.bin
 

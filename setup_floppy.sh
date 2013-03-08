@@ -1,4 +1,5 @@
 #!/bin/bash
+# setup_floppy.sh
 
 sudo mkfs.msdos floppy_photon.img
 sudo losetup /dev/loop0 floppy_photon.img

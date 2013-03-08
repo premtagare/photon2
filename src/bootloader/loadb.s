@@ -1,3 +1,6 @@
+; loadb.s
+; Loads the Stage 2 bootloader
+
 BITS 16
 ORG 03Eh  ; this program is present in MBR after FAT12 filesystem information
 

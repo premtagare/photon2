@@ -1,5 +1,6 @@
-#building bootloader + kernel
-#$(warning Building bootloader and kernel)
+# Makefile for building bootloader and kernel
+
+$(warning Building bootloader and kernel)
 
 all:
 	@echo Building bootloader and kernel

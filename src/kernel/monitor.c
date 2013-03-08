@@ -1,4 +1,5 @@
-// Athena 7736
+// monitor.c
+// routines to print on screen 
 
 #include "monitor.h"
 

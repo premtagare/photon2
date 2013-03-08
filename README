@@ -5,6 +5,11 @@ Development platform : Ubuntu.
 
 After compilation binaries are transferred to a virtual floppy. System boots from this floppy.
 
+References:
+1. http://wiki.osdev.org/Main_Page
+2. http://www.brokenthorn.com/Resources/OSDevIndex.html
+3. http://www.jamesmolloy.co.uk/tutorial_html/
+
 
 Versions explained:
 
@@ -18,7 +23,6 @@ Bootloader Development:
 -----------------------
 1. Stage 1 Bootloader is copied into MBR starting from address 0x3E
 This will parse FAT12 filesystem and loads Stage 2 Bootloader from floppy and places it at adress 0x10000 in RAM.
-*loadk.s and loadk.bin are just stub, these will be replaced with Stage 2 Bootloader code in the next version.
 
 2. Stage 2 Bootloader(loadk.s) copies kernel from floppy to RAM. Kernel image is placed at location 0x100000.
 Bootloader switches to protected mode and jumps to execute kernel.
@@ -40,7 +44,7 @@ $ dd bs=512 count=2880 if=/dev/zero of=imagefile.img
 $ mkfs.msdos imagefile.img
 
 
-*** Extraordinary Techniques:
+*** Debugging Techniques:
 
 1. To take snapshot of RAM, press ctrl+alt+2 while QEMU is runnning and use the following command
    pmemsave starting_address end_address file

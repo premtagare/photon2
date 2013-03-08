@@ -1,5 +1,5 @@
-/* Athena 7736
-   Link.ld : Linker file for kernel
+/* Link.ld
+   Linker file for kernel
 */
 
 ENTRY(start)

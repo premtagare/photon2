@@ -1,4 +1,5 @@
-// Athena 7736
+// common.c
+// Common utility functions
 
 #include "common.h"
 

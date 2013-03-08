@@ -1,4 +1,4 @@
-// Athena 7736
+// common.h
 
 #ifndef COMMON_H
 #define COMMON_H

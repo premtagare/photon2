@@ -1,4 +1,3 @@
-; Athena 7736
 ; This file is added to make kernel compatible with GRUB
 ;
 ; boot.s -- Kernel start location. Also defines multiboot header.
