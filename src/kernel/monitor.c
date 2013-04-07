@@ -84,6 +84,28 @@ short print_num(int num)
 		print_char((char) (48+digits[--count]));
 }
 
+short print_hex(unsigned value)
+{
+	print_char('0');
+    print_char('x');
+	
+	int count = 0;
+	int digits[9];
+	while(value != 0)
+	{
+		digits[count++] = value % 16;
+		value/=16;
+	}
+	while(count>0)
+    {
+        count--;
+        if( digits[count] < 10 )
+            print_char((char) (48+digits[count]));
+        else
+            print_char((char) (65+digits[count]-10));
+    }
+}
+
 short scroll_screen()
 {
 	unsigned short *pDispArea = NULL;

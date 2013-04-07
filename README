@@ -17,7 +17,9 @@ Kernel Development:
 -------------------
 1. Defining and Loading GDT.
 2. Initializing IDT.
-3. Initializing IRQs and PIT
+3. Initializing IRQs and PIT.
+4. Enable Paging.
+
 
 Bootloader Development:
 -----------------------

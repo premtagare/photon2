@@ -31,3 +31,20 @@ void memset_int(unsigned int *dest,unsigned int val, unsigned int len)
   unsigned int *temp = (unsigned int *)dest;
   for ( ; len != 0; len--) *temp++ = val;
 }
+
+
+extern void panic(const char *message, const char *file, unsigned line)
+{
+    // We encountered a massive problem and have to stop.
+    asm volatile("cli"); // Disable interrupts.
+
+    monitor_write("PANIC(");
+    monitor_write(message);
+    monitor_write(") at ");
+    monitor_write(file);
+    monitor_write(":");
+    print_num(line);
+    monitor_write("\n");
+    // Halt by going into an infinite loop.
+    for(;;);
+}

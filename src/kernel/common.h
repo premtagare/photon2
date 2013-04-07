@@ -5,4 +5,6 @@
 
 #define NULL 0x00
 
+#define PANIC(msg) panic(msg,__FILE__,__LINE__);
+    
 #endif
